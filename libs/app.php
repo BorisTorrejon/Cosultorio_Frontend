@@ -11,6 +11,10 @@ class App{
         if (file_exists($fileController)) {
             require_once $fileController;
             $controller = new $url[0];
+            $controller->loadModel($url[0]);
+            if(method_exists($controller,'get')){
+                $controller->get();
+            }
             if(isset($url[1])){
                 $controller->{$url[1]}();
             }
